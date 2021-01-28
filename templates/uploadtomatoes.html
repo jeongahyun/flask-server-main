@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>토마토</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../static/assets/css/main.css" />
+    <link rel="shortcut icon" href="../static/images/logo1.png">
+    <noscript><link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
+    <script type="text/javascript">// <![CDATA[
+        function shift_loading(){
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("content").style.display = "none";
+        }
+        function alert_pop(){
+            var flag = "{{ alertflag }}";
+            if(flag){
+                console.log("True");
+                alert(flag);
+            }else{
+                console.log("False");
+            }
+        }
+        window.onload=alert_pop;
+
+// ]]></script>
+</head>
+<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="{{ url_for('home') }}" class="logo">
+									<span class="symbol"><img src="../static/images/logo1.png" alt="" /></span><span class="title">전북대학교 지능형로봇연구소</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+                        <ul>
+							<li><a href="{{ url_for('home') }}">Home 메인</a></li>
+							<li><a href="{{ url_for('upload_straw') }}">Strawberry 딸기</a></li>
+							<li><a href="{{ url_for('upload_tomato') }}">Tomato 토마토</a></li>
+							<li><a href="{{ url_for('upload_pap') }}">Paprika 파프리카</a></li>
+						</ul>
+					</nav>
+
+                <div id="main">
+						<div class="inner">
+							<h1>토마토 병해충 탐지 모델</h1>
+                            <p>토마토의 질병을 탐지합니다. 토마토 사진을 업로드하세요.</p>
+                            <hr />
+                            <div id="loading">
+                                <section>
+                                    <div class="align-center">
+                                        <img src="../static/images/loading.gif"/>
+                                    </div>
+                                </section>
+                            </div>
+                            <div id="content">
+                                <section>
+                                    <form action="{{ url_for('result_toma') }}" method="post" enctype="multipart/form-data">
+                                        <div class="fields">
+										    <div class="field half">
+                                                <input type="file" name="file" />
+                                            </div>
+                                        </div>
+                                        <ul class="actions">
+                                            <li><input type="submit" class="button icon solid fa-upload" onclick="shift_loading()"/></li>
+                                        </ul>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+                </div>
+				<!-- Footer -->
+					<footer id="footer">
+                        <div class="inner">
+                            <ul class="copyright align-center">
+                                <li><img src="../static/images/logo2.png" class="align-center" width="40%"/></li>
+                                <br/>
+                                <br>
+                                <li>전북대학교 지능형로봇연구소</li><li>PRODUCT_CODE = J L A J H H</li>
+                            </ul>
+                        </div>
+					</footer>
+            </div>
+
+
+    <!-- Scripts -->
+    <script src="../static/assets/js/jquery.min.js"></script>
+    <script src="../static/assets/js/browser.min.js"></script>
+    <script src="../static/assets/js/breakpoints.min.js"></script>
+    <script src="../static/assets/js/util.js"></script>
+    <script src="../static/assets/js/main.js"></script>
+</body>
+</html>

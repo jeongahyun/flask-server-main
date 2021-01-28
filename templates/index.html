@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{% block title %}전북대학교 지능형로봇연구소{% endblock title %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta property="og:title" content="농작물 병해충 탐지 모델">
+		<meta property="og:description" content="전북대학교 지능형로봇연구소의 농작물 병해충 탐지 모델입니다. &#10;&#13;탐지 가능한 작물은 딸기, 토마토, 파프리카입니다.">
+		<meta property="og:image" content="../static/images/ogimage.png">
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
+		<link rel="shortcut icon" href="../static/images/logo1.png">
+		<noscript><link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="{{ url_for('home') }}" class="logo">
+									<span class="symbol"><img src="../static/images/logo1.png" alt="" /></span><span class="title">전북대학교 지능형로봇연구소</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="{{ url_for('home') }}">Home 메인</a></li>
+							<li><a href="{{ url_for('upload_straw') }}">Strawberry 딸기</a></li>
+							<li><a href="{{ url_for('upload_tomato') }}">Tomato 토마토</a></li>
+							<li><a href="{{ url_for('upload_pap') }}">Paprika 파프리카</a></li>
+						</ul>
+					</nav>
+            {% block content %}
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>농작물 병해충 탐지 모델</h1>
+                                <p>병해충 탐지를 하고 싶은 작물을 아래의 버튼 중에서 선택해주세요.<br>탐지 가능한 작물은 <b>딸기</b>, <b>토마토</b>, <b>파프리카</b> 입니다.</p>
+							</header>
+							<section class="tiles">
+								<article class="style1">
+									<span class="image">
+										<img src="{{ url_for('static', filename='images/straw.png') }}" alt="not found" />
+									</span>
+									<a href="{{ url_for('upload_straw') }}">
+										<h2>strawberries</h2>
+                                        <h3>딸기</h3>
+										<div class="content">
+											<p>딸기 병해충을 탐지합니다.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style2">
+									<span class="image">
+										<img src="../static/images/tomato.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('upload_tomato') }}">
+										<h2>tomatoes</h2>
+                                        <h3>토마토</h3>
+										<div class="content">
+											<p>토마토 병해충을 탐지합니다.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style3">
+									<span class="image">
+										<img src="../static/images/paprika.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('upload_pap') }}">
+										<h2>paprika</h2>
+										<h3>파프리카</h3>
+
+										<div class="content">
+											<p>파프리카 병해충을 탐지합니다.</p>
+										</div>
+									</a>
+								</article>
+							</section>
+						</div>
+					</div>
+            {% endblock content %}
+
+				<!-- Footer -->
+					<footer id="footer">
+                        <div class="inner">
+                            <ul class="copyright align-center">
+                                <li><img src="../static/images/logo2.png" class="align-center" width="40%"/></li>
+                                <br/>
+                                <br>
+                                <li>전북대학교 지능형로봇연구소</li><li>PRODUCT_CODE = J L A J H H</li>
+                            </ul>
+                        </div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../static/assets/js/jquery.min.js"></script>
+			<script src="../static/assets/js/browser.min.js"></script>
+			<script src="../static/assets/js/breakpoints.min.js"></script>
+			<script src="../static/assets/js/util.js"></script>
+			<script src="../static/assets/js/main.js"></script>
+
+	</body>
+</html>
+
