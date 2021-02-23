@@ -2,28 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>토마토</title>
+    <title>멜론 | 탐지 결과</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../static/assets/css/main.css" />
     <link rel="shortcut icon" href="../static/images/logo1.png">
     <noscript><link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
-    <script type="text/javascript">// <![CDATA[
-        function shift_loading(){
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("content").style.display = "none";
-        }
-        function alert_pop(){
-            var flag = "{{ alertflag }}";
-            if(flag){
-                console.log("True");
-                alert(flag);
-            }else{
-                console.log("False");
-            }
-        }
-        window.onload=alert_pop;
 
-// ]]></script>
 </head>
 <body class="is-preload">
 		<!-- Wrapper -->
@@ -62,32 +46,27 @@
 
                 <div id="main">
 						<div class="inner">
-							<h1>토마토 병해충 탐지 모델</h1>
-                            <p>토마토의 질병을 탐지합니다. 토마토 사진을 업로드하세요.</p>
+							<h1>Melon disease detection</h1>
+                            <h2>탐지 결과</h2>
                             <hr />
-                            <div id="loading">
-                                <section>
-                                    <div class="align-center">
-                                        <img src="../static/images/loading.gif"/>
-                                    </div>
-                                </section>
-                            </div>
-                            <div id="content">
-                                <section>
-                                    <form action="{{ url_for('result_toma') }}" method="post" enctype="multipart/form-data">
-                                        <div class="fields">
-										    <div class="field half">
-                                                <input type="file" name="file" />
+                            <section>
+                                <div class="box alt">
+										<div class="row gtr-uniform">
+											<div class="col-8">
+                                                <ul>
+                                                    <li>Time cost : {{ cost }}</li>
+                                                    <li>Inference with gpu : {{ is_gpu }}</li>
+                                                </ul>
+                                                <span class="image fit">
+                                                    <img src="{{ outimg }}" />
+                                                </span>
                                             </div>
                                         </div>
-                                        <ul class="actions">
-                                            <li><input type="submit" class="button icon solid fa-upload" onclick="shift_loading()"/></li>
-                                        </ul>
-                                    </form>
-                                </section>
-                            </div>
+                                </div>
+                            </section>
                         </div>
                 </div>
+
 				<!-- Footer -->
 					<footer id="footer">
                         <div class="inner">
@@ -101,12 +80,21 @@
 					</footer>
             </div>
 
-
     <!-- Scripts -->
     <script src="../static/assets/js/jquery.min.js"></script>
     <script src="../static/assets/js/browser.min.js"></script>
     <script src="../static/assets/js/breakpoints.min.js"></script>
     <script src="../static/assets/js/util.js"></script>
     <script src="../static/assets/js/main.js"></script>
+    <script type="text/javascript">// <![CDATA[
+            $(document).ready(function () {
+                $.ajax({
+                    type:"POST",
+                    url: "{{ url_for('delete') }}",
+                    data: {'filename': "{{ outimg }}"},
+                    dataType: "json",
+                })
+            })
+    // ]]></script>
 </body>
 </html>

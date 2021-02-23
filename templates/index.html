@@ -47,6 +47,7 @@
 							<li><a href="{{ url_for('upload_straw') }}">Strawberry 딸기</a></li>
 							<li><a href="{{ url_for('upload_tomato') }}">Tomato 토마토</a></li>
 							<li><a href="{{ url_for('upload_pap') }}">Paprika 파프리카</a></li>
+                            <li><a href="{{ url_for('upload_mel') }}">Melon 멜론</a></li>
 						</ul>
 					</nav>
             {% block content %}
@@ -55,7 +56,7 @@
 						<div class="inner">
 							<header>
 								<h1>농작물 병해충 탐지 모델</h1>
-                                <p>병해충 탐지를 하고 싶은 작물을 아래의 버튼 중에서 선택해주세요.<br>탐지 가능한 작물은 <b>딸기</b>, <b>토마토</b>, <b>파프리카</b> 입니다.</p>
+                                <p>병해충 탐지를 하고 싶은 작물을 아래의 버튼 중에서 선택해주세요.<br>탐지 가능한 작물은 <b>딸기</b>, <b>토마토</b>, <b>파프리카</b>, <b>멜론</b> 입니다.</p>
 							</header>
 							<section class="tiles">
 								<article class="style1">
@@ -92,6 +93,19 @@
 
 										<div class="content">
 											<p>파프리카 병해충을 탐지합니다.</p>
+										</div>
+									</a>
+								</article>
+                                <article class="style4">
+									<span class="image">
+										<img src="../static/images/melon.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('upload_mel') }}">
+										<h2>melon</h2>
+										<h3>멜론</h3>
+
+										<div class="content">
+											<p>멜론 병해충을 탐지합니다.</p>
 										</div>
 									</a>
 								</article>

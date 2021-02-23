@@ -38,6 +38,10 @@ def upload_tomato():
 def upload_pap():
     return render_template('uploadpaprika.html')
 
+@app.route('/upload/melon')
+def upload_mel():
+    return render_template('uploadmelon.html')
+
 
 ###########################################################
 
@@ -207,6 +211,61 @@ def result_pap():
 
     except:
         return render_template('uploadpaprika.html', alertflag="이미지가 너무 크거나 올바르지 않은 파일입니다.")
+
+@app.route('/melon', methods=['GET', 'POST'])
+def result_mel():
+    """ 아직 모델이 없는 관계로 파프리카 모델 임시 사용 """
+    try:
+        # Set content_type to header.
+        content_type = 'application/json'
+        headers = {'content-type': content_type}
+
+        # upload image string array data.
+        img_file = request.files['file'].stream.read()
+
+        img = cv2.imdecode(np.fromstring(img_file, np.uint8), cv2.IMREAD_COLOR)
+
+        # map to json.
+        send = base64.b64encode(np.array(img))
+
+        request_json = json.dumps({'input_img': send.decode(),
+                                   'info': {
+                                       'height': img.shape[0],
+                                       'width': img.shape[1],
+                                       'channel': img.shape[2]
+                                   }
+                                   })
+
+
+        # http request.
+        response = requests.post(addresses["PAPRIKA_SERVER"], data=request_json, headers=headers)
+        # print(response)
+
+        # ['data', 'time', 'is_gpu']
+        response_json = response.json()
+        cost = response_json['time']
+        is_gpu = response_json['is_gpu']
+
+        # change to numpy array.
+        r = base64.decodebytes(response_json['data'].encode())
+        response_dat = np.fromstring(r, dtype=np.float)
+
+        response_dat = response_dat.reshape((response_json['info']['height'],
+                                             response_json['info']['width'],
+                                             response_json['info']['channel']))
+
+        # decodeed numpy image.
+        plt.figure(figsize=(7, 7))
+        plt.imshow(response_dat)
+        timenow = str(time.time())
+        fname = os.path.join('static', 'results', 'paprika', timenow + '.png')
+        plt.axis('off')
+        plt.savefig(fname)
+
+        return render_template('mel_result.html', outimg=fname, timenow=timenow, cost=cost, is_gpu=is_gpu)
+
+    except:
+        return render_template('uploadmelon.html', alertflag="이미지가 너무 크거나 올바르지 않은 파일입니다.")
 
 
 ################################################################################

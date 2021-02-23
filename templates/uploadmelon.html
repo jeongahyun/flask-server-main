@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>토마토</title>
+    <title>멜론</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="../static/assets/css/main.css" />
     <link rel="shortcut icon" href="../static/images/logo1.png">
@@ -21,8 +21,7 @@
                 console.log("False");
             }
         }
-        window.onload=alert_pop;
-
+        window.onload = alert_pop;
 // ]]></script>
 </head>
 <body class="is-preload">
@@ -62,29 +61,29 @@
 
                 <div id="main">
 						<div class="inner">
-							<h1>토마토 병해충 탐지 모델</h1>
-                            <p>토마토의 질병을 탐지합니다. 토마토 사진을 업로드하세요.</p>
+							<h1>멜론 병해충 탐지 모델</h1>
+                            <p>멜론의 질병을 탐지합니다. 멜론 사진을 업로드하세요.</p>
                             <hr />
                             <div id="loading">
                                 <section>
                                     <div class="align-center">
-                                        <img src="../static/images/loading.gif"/>
+                                        <img src="../static/images/loading.gif" alt="loading.."/>
                                     </div>
                                 </section>
                             </div>
                             <div id="content">
-                                <section>
-                                    <form action="{{ url_for('result_toma') }}" method="post" enctype="multipart/form-data">
-                                        <div class="fields">
-										    <div class="field half">
-                                                <input type="file" name="file" />
-                                            </div>
+                            <section>
+                                <form action="{{ url_for('result_mel') }}" method="post" enctype="multipart/form-data">
+                                    <div class="fields">
+                                        <div class="field half">
+                                            <input type="file" name="file" accept=".jpg, .png" />
                                         </div>
-                                        <ul class="actions">
-                                            <li><input type="submit" class="button icon solid fa-upload" onclick="shift_loading()"/></li>
-                                        </ul>
-                                    </form>
-                                </section>
+                                    </div>
+                                    <ul class="actions">
+                                        <li><input type="submit" class="button icon solid fa-upload" onclick="shift_loading()"/></li>
+                                    </ul>
+                                </form>
+                            </section>
                             </div>
                         </div>
                 </div>
