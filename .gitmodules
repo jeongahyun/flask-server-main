@@ -1,0 +1,3 @@
+[submodule "disease-api-server"]
+	path = disease-api-server
+	url = https://github.com/hololee/disease-api-server.git
